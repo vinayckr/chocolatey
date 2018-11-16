@@ -1,4 +1,4 @@
-﻿$PackageName=Read-Host -Prompt 'Package Name'
+$PackageName=Read-Host -Prompt 'Package Name'
 $PackageVersion = Read-Host -Prompt 'Version'
 $BinaryPath = Read-Host -Prompt 'Exact Path for binary'
 $BinaryFileName = Read-Host -Prompt 'Binary File Name inlcuding extension'
