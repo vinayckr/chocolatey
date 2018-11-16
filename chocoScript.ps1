@@ -46,7 +46,7 @@ $installPSfileString= @"
 
 `$packageArgs = `@{
   packageName   = `$packageName
-  fileType      = 'exe'
+  fileType      = `$installerExtension
   file         = `$fileLocation
   checksum      = '$BinaryFileHashValue'
   checksumType  = 'sha256' 
