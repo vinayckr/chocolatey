@@ -2,12 +2,12 @@
 
 Script purpose is to ask user for inputs and create a choco package
 
-Inputs Required
+Inputs Required|
 ---------------
-Package Name
-Package Version
-Path for binary
-binary name
-binary name with extension
-author name
+Package Name|
+Package Version|
+Path for binary|
+binary name|
+binary name with extension|
+author name|
 
