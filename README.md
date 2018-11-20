@@ -2,8 +2,8 @@
 
 Script purpose is to ask user for inputs and create a choco package
 
-Inputs Required|
----------------
+Inputs Required| column 2
+---------------  ------------
 Package Name|
 Package Version|
 Path for binary|
