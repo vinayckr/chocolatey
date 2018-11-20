@@ -2,11 +2,11 @@
 $PackageName=Read-Host -Prompt 'Package Name' # Choco package name which we are creating
 $PackageVersion = Read-Host -Prompt 'Version' # Choco package version
 $BinaryPath = Read-Host -Prompt 'Exact Path for binary' # Stores path for binary
-$BinaryFileName = Read-Host -Prompt 'Binary File Name inlcuding extension' #Binary file name to be used with choco package
+$BinaryFileName = Read-Host -Prompt 'Binary File Name including extension' #Binary file name to be used with choco package
 $BinaryExtensionCheck = $BinaryFileName.Split(".")
-if($BinaryExtensionCheck == ("exe"||"msi"||"msu") # validation check for binary type
+if($BinaryExtensionCheck == ("exe"||"msi"||"msu")) # validation check for binary type
 {
-$installerExtension = Read-Host -Prompt 'Enter Installer type example: Exe or msi'
+#$installerExtension = Read-Host -Prompt 'Enter Installer type example: Exe or msi'
 $SilentArguments = Read-Host -Prompt 'enter silent arguments'
 $AuthorName = Read-Host -Prompt 'Enter Author Name'
 choco new $PackageName
@@ -53,8 +53,8 @@ $installPSfileString= @"
 
 `$packageArgs = `@{
   packageName   = `$packageName
-  fileType      = `$installerExtension
-  file         = `$fileLocation
+  fileType      = '$BinaryExtensionCheck[1].ToUpper()'
+  file         =  `$fileLocation
   checksum      = '$BinaryFileHashValue'
   checksumType  = 'sha256' 
   silentArgs    = "$SilentArguments"
