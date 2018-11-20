@@ -1,7 +1,11 @@
-$PackageName=Read-Host -Prompt 'Package Name'
-$PackageVersion = Read-Host -Prompt 'Version'
-$BinaryPath = Read-Host -Prompt 'Exact Path for binary'
-$BinaryFileName = Read-Host -Prompt 'Binary File Name inlcuding extension'
+# Prompts for user input
+$PackageName=Read-Host -Prompt 'Package Name' # Choco package name which we are creating
+$PackageVersion = Read-Host -Prompt 'Version' # Choco package version
+$BinaryPath = Read-Host -Prompt 'Exact Path for binary' # Stores path for binary
+$BinaryFileName = Read-Host -Prompt 'Binary File Name inlcuding extension' #Binary file name to be used with choco package
+$BinaryExtensionCheck = $BinaryFileName.Split(".")
+if($BinaryExtensionCheck == ("exe"||"msi"||"msu") # validation check for binary type
+{
 $installerExtension = Read-Host -Prompt 'Enter Installer type example: Exe or msi'
 $SilentArguments = Read-Host -Prompt 'enter silent arguments'
 $AuthorName = Read-Host -Prompt 'Enter Author Name'
@@ -20,6 +24,7 @@ robocopy /E $BinaryPath .\$PackageName\tools\
 $binarHash = Get-FileHash $binaryFile
 Write-Output $binarHash.Hash
 $binaryFileHashValue = Write-Output $binarHash.Hash
+# Writing Contents to nuspec file
 $nuspecFile = @"
 <?xml version=`"1.0`" encoding=`"utf-8`"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
@@ -36,6 +41,8 @@ $nuspecFile = @"
   </files>
 </package>
 "@ -f $PackageName, $PackageVersion, $AuthorName
+
+# Writing contents to Chocolatey Script
 
 $installPSfileString= @"
 `$ErrorActionPreference = 'Stop';
@@ -64,3 +71,9 @@ $nuspecFile | out-file -filepath $xmlFile
 $installPSfileString | out-file -filepath $installScriptfile
 
 choco pack $xmlFile
+}
+else
+{
+Write-Output "Invalid File Extension! Check Binary"
+Write-Output "Acceptable Extensions: exe or msi or msu"
+}
