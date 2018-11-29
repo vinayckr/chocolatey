@@ -4,7 +4,7 @@ $PackageVersion = Read-Host -Prompt 'Version' # Choco package version
 $BinaryPath = Read-Host -Prompt 'Exact Path for binary' # Stores path for binary
 $BinaryFileName = Read-Host -Prompt 'Binary File Name including extension' #Binary file name to be used with choco package
 $BinaryExtensionCheck = $BinaryFileName.Split(".")
-if($BinaryExtensionCheck == ("exe"||"msi"||"msu")) # validation check for binary type
+if($BinaryExtensionCheck -eq "exe" -or $BinaryExtensionCheck -eq "msi" -or $BinaryExtensionCheck -eq "msu") # validation check for binary type
 {
 #$installerExtension = Read-Host -Prompt 'Enter Installer type example: Exe or msi'
 $SilentArguments = Read-Host -Prompt 'enter silent arguments'
